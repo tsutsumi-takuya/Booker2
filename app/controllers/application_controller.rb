@@ -14,12 +14,8 @@ def configure_permitted_parameters
 end
 def after_sign_in_path_for(resource)
 
-      user_path(resource.id)
+    user_path(resource.id)
 
 end
-def after_sign_out_path_for(resource)
 
-   books_top_path
-
-end
 end

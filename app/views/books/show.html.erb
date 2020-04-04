@@ -1,11 +1,91 @@
-
 <% if flash[:notice] %>
   <p><%= flash[:notice] %></p>
 <% end %>
 
-<h1>Book detail</h1>
-<%= @book.title %>
-<%= @book.body %>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<title>Bookers</title>
+</head>
+<body>
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <nav class='nav navbar-nav navbar-left' >
+      <span>Bookers</span>
+    </nav>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a class="glyphicon glyphicon-home home" href="/users/<%= current_user.id %>"> Home</a></li>
+          <li><a class="glyphicon glyphicon-user users" href="/users/#{user.id}"> Users</a></li>
+          <li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
+          <li><a class="glyphicon glyphicon-log-out logout" data-method="delete" href="/users/sign_out"> logout</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-<%= link_to 'Edit', edit_book_path(@book.id) %> |
-<%= link_to 'Destroy', books_path, method: :delete, "data-confirm" => "本当に消しますか？"%>
+<div class='body'>
+<div class='container'>
+<p id="notice"></p>
+
+	<div class='col-xs-3'>
+	<h2>User info</h2>
+
+	<h3>Name</h3>
+	<%= @user %>
+	<h3>Image</h3>
+	<%= attachment_image_tag @user, :profile_image %>
+	<h3>introduction</h3>
+	<%= @introduction %>
+
+	<div class='row'>
+  	<a class="col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_users_path" href="/users/params[:id]/edit"></a>
+	</div>
+
+	<h2>New book</h2>
+
+	<div class="field row">
+    <label for="book_title">Title</label>
+    <input class="col-xs-12 book_title" type="text" name="book[title]" id="book_title" />
+  	</div>
+
+	<div class="field row">
+    <label for="book_opinion">Opinion</label>
+    <textarea class="col-xs-12 book_body" name="book[body]" id="book_body" />
+	</textarea>
+	</div>
+
+	<div class="actions row">
+    <input type="submit" name="commit" value="Create Book" class="btn btn-primary col-xs-12" data-disable-with="Create Book" href="/books/show">
+	</div>
+</div>
+
+<div class="col-xs-9">
+<h2>Book detail</h2>
+ <table class='table'>
+	<tr>
+		<td><a href="/users/id"></td>
+		<td><a href="/books/id">book.name</a></td>
+		<td>book.introduction</td>
+		<td><a class="btn-sm btn-success edit_book_24001" href="/books/id/edit">Edit</a></td>
+		<td><a data-confirm="本当に消しますか？" class="btn-sm btn-danger destroy_book_id" rel="nofollow" data-method="delete" href="/books/id">Destroy</a></td>
+	</tr>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+
+<footer>
+  <div class='container'>
+  	<div class='row'>
+    	<div class='col-xs-3 col-xs-offset-9'>
+    		<p>CopyRight Infratop.inc</p>
+    	</div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

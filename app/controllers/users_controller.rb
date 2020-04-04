@@ -11,20 +11,26 @@ def new
 	@user = User.new
 
 end
+def top
+end
+
 def edit
 
-	@user = user.find(params[:id])
+	@user = User.find(params[:id])
 
 end
 def show
 
-  @users = Book.all
+  @user = User.find(params[:id])
+  @book = Book.new
+  @books = @user.books
 
 end
 
 def create
 
-	@user = User.new(name: params[:name], email: params[:email])
+	@user = User.new(name: params[:name], email: params[:email],image_name: "default_user.jpg",
+      password: params[:password])
 
     if @user.save
       flash[:notice] = "Welcome! You have signed up successfully."
@@ -45,7 +51,8 @@ def update
       render :index
     end
 end
+private
 def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :introduction, :profile_image_id)
 end
 end

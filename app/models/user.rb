@@ -8,5 +8,6 @@ class User < ApplicationRecord
 
  	has_many :books, dependent: :destroy
 	# 1:Nの関係になるモデル名を複数形で記述
+	attachment :profile_image
 
 end

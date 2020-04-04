@@ -11,7 +11,7 @@
     </nav>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-          <li><a class="glyphicon glyphicon-home home" href="/users"> Home</a></li>
+          <li><a class="glyphicon glyphicon-home home" href="/users/<%= current_user.id %>"> Home</a></li>
           <li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
           <li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
           <li><a class="glyphicon glyphicon-log-out logout" data-method="delete" href="/users/sign_out"> logout</a></li>
@@ -22,31 +22,35 @@
 
 <div class='body'>
 <div class='container'>
-
 <p id="notice"></p>
 
-<div class='col-xs-3'>
-<h2>User info</h2>
+	<div class='col-xs-3'>
+	<h2>User info</h2>
 
-<!-- <h3>Name</h3>
-<%= @user.name %>
-<h3>Image</h3>
-<%= attachment_image_tag @user, :profile_image %>
-<h3>introduction</h3>
-<%= @user.introduction %>
-<br><%= f.submit 'Update User' %></br>
+	<h3>Name</h3>
+	<%= attachment_image_tag @user, :profile_image ,:fill, 60, 60 %>
+	<%= @user.name %>
+	<h3>introduction</h3>
+	<%= @user.introduction %>
+
+	<%= link_to "編集",edit_user_path(current_user.id) %>
 
 <h2>New book</h2>
+<!-- form_for部分 -->
+<%= form_for(@book) do |f| %>
 
 	<label for="title">Title</label>
 	<%= f.text_field :title %>
-	<label for="body">Body</label>
+	<label for="body">Opinion</label>
 	<%= f.text_area :body %>
 	<br><%= f.submit 'Create Book' %></br>
- --> 
+
+<% end %>
+
 <div class="col-xs-9">
 <h2>Books</h2>
-<table class="table table-striped">
+ <table class='table table-hover table-inverse'>
+  <thead>
 	<thead>
 		<tr>
 			<th> </th>
@@ -55,15 +59,17 @@
 			<th colspan="3"></th>
 		</tr>
 	</thead>
+
 	<tbody>
-		<% @users.each do |f| %>
+		<% @books.each do |book| %>
 		<tr>
 			<td><%= book.title %></td>
+
 			<td><%= book.body %></td>
-			<td><%= link_to 'Show', users_path(users.id) %></td>
 		</tr>
 		<% end %>
 	</tbody>
+</thead>
 </table>
 </div>
 </div>
