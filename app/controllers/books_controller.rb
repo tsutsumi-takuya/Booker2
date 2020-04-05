@@ -4,6 +4,13 @@ def index
 
 	@books = Book.all
 	@book = Book.new
+    @user = User.find(current_user.id)
+
+end
+def show
+
+    @book = Book.find(params[:id])
+    @user = User.find(current_user.id)
 
 end
 def new
@@ -20,11 +27,6 @@ end
 def top
 end
 
-def show
-
-	@book = Book.find(params[:id])
-
-end
 def update
 
     book = Book.find(params[:id])
@@ -35,12 +37,11 @@ def update
 end
 def create
 
-	@book = Book.new(book_params)
+    @book = Book.new(book_params)
     @book.user_id = current_user.id
     @book.save
     flash[:notice] = "You have created book successfully."
-    redirect_to books_path
-    
+    redirect_to book_path(@book.id)
 end
 def destroy
 

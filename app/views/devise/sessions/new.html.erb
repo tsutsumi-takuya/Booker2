@@ -1,35 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <title>Bookers</title>
-</head>
-<body>
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <nav class='nav navbar-nav navbar-left' >
-      <span>Bookers</span>
-    </nav>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-          <li><a class="glyphicon glyphicon-home home" href="/"> Home</a></li>
-          <li><a class="glyphicon glyphicon-link about" href="/home/about"> About</a></li>
-          <li><a class="glyphicon glyphicon-edit sign_up" href="/users/sign_up"> sign up</a></li>
-          <li><a class="glyphicon glyphicon-log-in sign_in" href="/users/sign_in"> login</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
 <div class='body'>
 <div class='container'>
-<p id="notice"></p>
 
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "Name" %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "Name" %>
   </div>
 
   <div class="field">
@@ -42,12 +19,12 @@
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
     </div>
-  <% end %>
+    <div class="actions">
+    <%= f.submit "Log in" %>
+  </div>
   <% end %>
 
-  <div class="actions">
-    <input type="submit" name="commit" value="Log in" class="btn btn-primary" data-disable-with="Log in" />
-  </div>
+  <% end %>
 
   <a class="sign_up" href="/users/sign_up">Sign up</a><br />
 
@@ -58,14 +35,5 @@
 </div>
 </div>
 
-<footer>
-  <div class='container'>
-    <div class='row'>
-      <div class='col-xs-3 col-xs-offset-9'>
-        <p>CopyRight Infratop.inc</p>
-      </div>
-    </div>
-  </div>
-</footer>
   </body>
 </html>
