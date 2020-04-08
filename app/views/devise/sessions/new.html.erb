@@ -15,25 +15,22 @@
   </div>
 
   <% if devise_mapping.rememberable? %>
+
     <div class="field">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
     </div>
-    <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-  <% end %>
+
+    <div class="btn-group" role="group">
+      <%= f.submit "Log in", class:"btn btn-primary"%>
+    </div>
 
   <% end %>
+  <% end %>
 
-  <a class="sign_up" href="/users/sign_up">Sign up</a><br />
+  <%= link_to "Sign Up", new_user_registration_path %>
 
-  <a href="/users/password/new">Forgot your password?</a><br />
+  <br><%= link_to "Forgot your password?", new_user_password_path %></br>
 
 </div>
 </div>
-</div>
-</div>
-
-  </body>
-</html>

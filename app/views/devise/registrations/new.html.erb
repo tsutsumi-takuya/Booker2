@@ -29,12 +29,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-</div>
-</div>
-</div>
-</div>
+  <div class="btn-group" role="group">
+      <%= f.submit "Sign up", class:"btn btn-success" %>
+    </div>
 
+      <br><%= link_to 'Log in',new_user_session_path %></br>
+
+<% end %>
+
+</div>
+</div>

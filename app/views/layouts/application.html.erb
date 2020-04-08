@@ -19,34 +19,34 @@
       <nav>
       <% if user_signed_in? %>
           <ul class="nav navbar-nav navbar-right">
-            <%= link_to user_path(current_user.id), method: :get do%>
-            <span class="glyphicon glyphicon-home" aria-hidden="true"> Home</span>
-            <% end %>
-            <%= link_to @user, method: :get do %>
-            <span class="glyphicon glyphicon-user" aria-hidden="true"> User</span>
-            <% end %>
-            <%= link_to @book, method: :get do %>
-            <span class="glyphicon glyphicon-book" aria-hidden="true"> Books</span>
-            <% end %>
-            <%= link_to destroy_user_session_path, method: :delete do %>
-            <span class="glyphicon glyphicon-log-out" aria-hidden="true"> logout</span>
-            <% end %>
+            <li><%= link_to user_path(current_user.id), method: :get do%>
+              <span class="glyphicon glyphicon-home home"> Home</span>
+            <% end %></li>
+            <li><%= link_to users_path, method: :get do %>
+            <span class="glyphicon glyphicon-user" > Users</span>
+            <% end %></li>
+            <li><%= link_to @book, method: :get do %>
+            <span class="glyphicon glyphicon-book" > Books</span>
+            <% end %></li>
+            <li><%= link_to destroy_user_session_path, method: :delete do %>
+            <span class="glyphicon glyphicon-log-out" > logout</span>
+            <% end %></li>
           </ul>
       
       <% else %>
         <ul class="nav navbar-nav navbar-right">
-            <%= link_to root_path, method: :get do %>
-            <span class="glyphicon glyphicon-home" aria-hidden="true"> Home</span>
-            <% end %>
-            <%= link_to @users_path, method: :get do %>
-            <span class="glyphicon glyphicon-link" aria-hidden="true"> About</span>
-            <% end %>
-            <%= link_to new_user_registration_path, method: :get do %>
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"> sign up</span>
-            <% end %>
-            <%= link_to new_user_session_path, method: :get do %>
-            <span class="glyphicon glyphicon-log-in" aria-hidden="true"> log in</span>
-            <% end %>
+            <li><%= link_to root_path, method: :get do %>
+            <span class="glyphicon glyphicon-home" > Home</span>
+            <% end %></li>
+            <li><%= link_to home_about_path, method: :get do %>
+            <span class="glyphicon glyphicon-link" > About</span>
+            <% end %></li>
+            <li><%= link_to new_user_registration_path, method: :get do %>
+            <span class="glyphicon glyphicon-edit" > sign up</span>
+            <% end %></li>
+            <li><%= link_to new_user_session_path, method: :get do %>
+            <span class="glyphicon glyphicon-log-in" > log in</span>
+            <% end %></li>
         </ul>
         <% end %>
       </nav>

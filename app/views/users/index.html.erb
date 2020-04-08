@@ -1,41 +1,72 @@
-<% if user_signed_in? %>
-<% end %>
-<% if flash[:notice] %>
-  <p><%= flash[:notice] %></p>
-<% end %>
-</div>
+<div class='body'>
+	<div class='container'>
 
-<h1>Users</h1>
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>image</th>
-			<th>name</th>
-			<th></th>
-			<th colspan="3"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @users.each do |book| %>
-		<tr>
-			<td><%= book.title %></td>
-			<td><%= book.body %></td>
-			<td><%= link_to 'Show', users_path(users.id) %></td>
-		</tr>
+		<% if flash[:notice] %>
+ 			<p><%= flash[:notice] %></p>
 		<% end %>
-	</tbody>
-</table>
+		
+		<div class='col-xs-3'>
+			<h2>User info</h2>
+			<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format:'jpeg', fallback: "no_image.jpg" %>
+			<table class='table table-hover table-inverse'>
+	      	<tbody>
+				<tr>
+					<th>name</th>
+					<th><%= @user.name %></th>
+				</tr>
 
-<h2>New book</h2>
-<!-- form_for部分 -->
-<%= form_for(@book) do |f| %>
+				<tr>
+					<th>introduction</th>
+					<th><%= @user.introduction %></th>
+				</tr>
 
-<%= render 'views/error', book: @book %>
+			</tbody>
+			</table>
 
-	<label for="title">Title</label>
-	<%= f.text_field :title %>
-	<label for="body">Body</label>
-	<%= f.text_area :body %>
-	<br><%= f.submit 'Create Book' %></br>
+			<%= link_to edit_user_path(current_user.id), method: :get do %>
+			<span class="col-xs-12 btn btn-default glyphicon glyphicon-wrench "></span>
+			<% end %>
 
-<% end %>
+			<br></br>
+
+			<h2>New book</h2>
+			<!-- form_for部分 -->
+			<%= form_for(@book) do |f| %>
+
+			<label for="title">Title</label>
+			<br><%= f.text_field :title ,class:"col-xs-12"%></br>
+
+			<br><label for="body">Opinion</label></br>
+			<%= f.text_area :body ,class:"col-xs-12"%>
+			
+			<br><%= f.submit 'Create Book',class:"btn btn-primary col-xs-12" %></br>
+			<% end %>
+		</div>
+
+	<div class="col-xs-9">
+		<h2>Users</h2>
+		 <table class='table table-hover table-inverse'>
+		  <thead>
+			<tr>
+				<th>image</th>
+				<th>name</th>
+				<th></th>
+				<th colspan="3"></th>
+			</tr>
+			</thead>
+
+			<tbody>
+				<% @users.each do |user| %>
+				<tr>
+					<td><%= attachment_image_tag(@user, :profile_image, :fill, 60, 60, format: 'jpeg',fallback: "no_image.jpg") %>
+					</td>
+					<td><%= user.name %></td>
+					<td><%= link_to 'Show', user_path(user.id)%></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+
+</div>
+</div>

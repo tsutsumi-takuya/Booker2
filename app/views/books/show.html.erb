@@ -1,28 +1,46 @@
 <div class='body'>
   <div class='container'>
-    <div class='col-xs-3'>
-    <h2>User info</h2>
-    <%= attachment_image_tag(@user, :profile_image, :fill, 60, 60, format: 'jpeg',fallback: "noimage.jpg") %>
-    <table class='table table-hover table-inverse'>
-        <tbody>
-      <tr>
-        <th>name</th>
-        <th><%= @user.name %></th>
-      </tr>
-
-      <tr>
-        <th>introduction</th>
-        <th><%= @user.introduction %></th>
-      </tr>
-
-    </tbody>
-    </table>
-
-    <%= link_to edit_user_path(current_user.id), method: :get do %>
-
-      <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+    <% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
     <% end %>
-  </div>
+    <div class='col-xs-3'>
+      <h2>User info</h2>
+      <%= attachment_image_tag(@user, :profile_image, :fill, 60, 60, format: 'jpeg',fallback: "no_image.jpg") %>
+      <table class='table table-hover table-inverse'>
+          <tbody>
+        <tr>
+          <th>name</th>
+          <th><%= @user.name %></th>
+        </tr>
+
+        <tr>
+          <th>introduction</th>
+          <th><%= @user.introduction %></th>
+        </tr>
+
+      </tbody>
+      </table>
+
+     <%= link_to edit_user_path(current_user.id), method: :get do %>
+      <span class="col-xs-12 btn btn-default glyphicon glyphicon-wrench "></span>
+      <% end %>
+
+      <br></br>
+
+      <h2>New book</h2>
+      <!-- form_for部分 -->
+      <%= form_for(@book) do |f| %>
+      
+      <label for="title">Title</label>
+      <br><%= f.text_field :title ,class:"col-xs-12"%></br>
+
+      <br><label for="body">Opinion</label></br>
+      <%= f.text_area :body ,class:"col-xs-12"%>
+      
+      <br><%= f.submit 'Create Book',class:"btn btn-primary col-xs-12" %></br>
+      <% end %>
+
+    </div>
 
   <div class="col-xs-9">
     <h2>Book Detail</h2>
@@ -35,11 +53,14 @@
 
       <tbody>
         <tr>
-          <td><%= attachment_image_tag(@user, :profile_image, :fill, 40, 40, format: 'jpeg',fallback: "noimage.jpg") %></td>
+          <td><%= attachment_image_tag(@user, :profile_image, :fill, 40, 40, format: 'jpeg',fallback: "no_image.jpg") %>
+          <br><%= link_to current_user.name, user_path(current_user.id) %><br></td>
           <td><%= @book.title %></td>
           <td><%= @book.body %></td>
-          <td><%= link_to 'Edit', edit_book_path(@book.id) %></td>
-          <td><%= link_to 'Destroy', book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？"%></td>
+          <td><%= link_to 'Edit', edit_book_path(@book.id), method: :get, class:"btn-sm btn-success" %></td>
+          <td><%= link_to 'Destroy', book_path(@book.id), method: :delete, class:"btn-sm btn-danger", "data-confirm" => "本当に消去しますか？"%></td>
+
+          </td>
         </tr>
       </tbody>
     </table>
