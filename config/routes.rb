@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
 	devise_for :users
 
-	root 'books#top'
+	root 'top2#top'
 
-	get 'home/about' => 'books#about'
+	get 'home/about' => 'top2#about'
 
 	get 'users' => 'users#index'
 
