@@ -1,22 +1,26 @@
 class UserimagesController < ApplicationController
 
-def new
+	def new
 
-    @users_image = Userimage.new
+	    @users_image = Userimage.new
 
-end
-def create
+	end
 
-    @user_image = Userimage.new(user_image_params)
-    @user_image.user_id = current_user.id
-    @user_image.save
-    redirect_to user_images_path
+	def create
 
-end
-private
-def post_image_params
+	    @user_image = Userimage.new(user_image_params)
+	    @user_image.user_id = current_user.id
+	    @user_image.save
+	    redirect_to user_images_path
 
-    params.require(:post_image).permit(:shop_name, :image, :caption)
+	end
 
-end
+	private
+
+	def post_image_params
+
+	    params.require(:post_image).permit(:shop_name, :image, :caption)
+
+	end
+
 end
