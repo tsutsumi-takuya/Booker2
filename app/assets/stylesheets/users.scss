@@ -75,22 +75,27 @@ a {
     text-decoration: underline;
 }
 
-th {
+.table {
 
-    padding-bottom: 5px;
-    display: table-cell;
-    vertical-align: inherit;
-    font-weight: bold;
-    text-align: -internal-center;
+    text-align: center;
 
-}
+    th {
 
-td {
+        padding-bottom: 5px;
+        display: table-cell;
+        vertical-align: inherit;
+        font-weight: bold;
+        text-align: center;
 
-    padding-bottom: 7px;
-    padding-left: 5px;
-    padding-right: 5px;
+    }
 
+    td {
+
+        padding-bottom: 7px;
+        padding-left: 5px;
+        padding-right: 5px;
+
+    }
 }
 
 label {
